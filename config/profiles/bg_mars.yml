@@ -1,0 +1,21 @@
+endpoints:
+  login:
+    host: mars.theblueground.net
+    uri: /api/auth/login
+    protocol: http
+    class_name: BgRequests
+  refresh-token:
+    host: mars.theblueground.net
+    uri: /api/auth/refresh-token
+    protocol: http
+    class_name: BgRequests
+  book:
+    host: mars.theblueground.net
+    uri: /api/units/book
+    protocol: http
+    class_name: BgRequests
+  units:
+    host: mars.theblueground.net
+    uri: /api/units
+    protocol: http
+    class_name: BgRequests
