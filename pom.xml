@@ -11,9 +11,6 @@
     <api.version>2</api.version>
     <scm.type>git</scm.type>
     <scm.repo>https://github.com/AntonisGiakoumis/bg-sdet-assignment.git</scm.repo>
-    <cucumber.profile>${profile}</cucumber.profile>
-    <cucumber.tag>${tag}</cucumber.tag>
-    <default.cucumber.profile>bg_mars</default.cucumber.profile>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
@@ -33,7 +30,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <exec dir="." executable="bundle" failonerror="true">
+                                <exec dir="." executable="sudo bundle" failonerror="true">
                                     <arg line="install" />
                                 </exec>
                                 <exec dir="." executable="mkdir" failonerror="true">
@@ -42,13 +39,10 @@
                                 <exec dir="test_output" executable="touch" failonerror="true">
                                     <arg line="json_output.json" />
                                 </exec>
-                                <condition property="cucumber.profile" value="${cucumber.profile}" else="${default.cucumber.profile}">
-                                    <isset property="cucumber.profile" />
-                                </condition>
                                 <exec dir="." executable="bundler" failonerror="false">
                                     <arg line="exec cucumber LOG_SCENARIOS=true" />
-                                    <arg line="-p ${cucumber.profile}" />
-                                    <arg line="--tags ${cucumber.tag}" />
+                                    <arg line="-p bg_mars" />
+                                    <arg line="--tags @regression" />
                                 </exec>
                             </target>
                         </configuration>
