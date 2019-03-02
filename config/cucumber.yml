@@ -1,7 +1,6 @@
 bg_mars: >
   --format json --out features/test_output/json_output.json
   --format pretty
-  USE_ENDPOINTS=true
 
 jenkins: >
   --format json --out features/test_output/json_output.json
