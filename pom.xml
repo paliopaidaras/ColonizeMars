@@ -33,9 +33,6 @@
                         </goals>
                         <configuration>
                             <target>
-                                <exec dir="." executable="bundle" failonerror="true">
-                                    <arg line="install" />
-                                </exec>
                                 <exec dir="." executable="mkdir" failonerror="true">
                                     <arg line="test_output" />
                                 </exec>
