@@ -30,7 +30,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <exec dir="." executable="mkdir" failonerror="true">
+                                <exec dir="features" executable="mkdir" failonerror="true">
                                     <arg line="test_output" />
                                 </exec>
                                 <exec dir="test_output" executable="touch" failonerror="true">
