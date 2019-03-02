@@ -33,27 +33,26 @@
                         <goals>
                             <goal>run</goal>
                         </goals>
-                    </execution>
-                    <execution>
-                        <phase>test</phase>
-                        <id>run-cucumbers</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
                         <configuration>
-                            <tasks>
-                                <echo message="Running Cucumber Ruby"/>
-                                <java fork="true"
-                                      classname="cucumber.api.cli.Main"
-                                      classpathref="maven.test.classpath"
-                                      failonerror="true">
-                                    <arg value="--plugin"/>
-                                    <arg value="pretty"/>
-                                    <arg value="--glue"/>
-                                    <arg value="."/>
-                                    <arg value="."/>
-                                </java>
-                            </tasks>
+                            <target>
+                                <exec dir="." executable="bundle" failonerror="true">
+                                    <arg line="install" />
+                                </exec>
+                                <exec dir="." executable="mkdir" failonerror="true">
+                                    <arg line="test_output" />
+                                </exec>
+                                <exec dir="test_output" executable="touch" failonerror="true">
+                                    <arg line="json_output.json" />
+                                </exec>
+                                <condition property="cucumber.profile" value="${cucumber.profile}" else="${default.cucumber.profile}">
+                                    <isset property="cucumber.profile" />
+                                </condition>
+                                <exec dir="." executable="bundler" failonerror="false">
+                                    <arg line="exec cucumber LOG_SCENARIOS=true" />
+                                    <arg line="-p ${cucumber.profile}" />
+                                    <arg line="--tags ${cucumber.tag}" />
+                                </exec>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
